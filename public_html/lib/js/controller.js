@@ -43,7 +43,7 @@ mediaControllers.controller('MediaListController', ['$scope', '$http', '$routePa
         //  When the user selects a "Customer" from our MasterView list, we'll set the following variable.
         $scope.selectedSubCategory = null;
 
-        $http.get('http://riversoflife.ca/MediaServiceAPI/scm?u=Admin&p=c@l!f0rni@&id=' + mainCategoryId).success(function (data) {
+        $http.get('&id=' + mainCategoryId).success(function (data) {
             $scope.subCategories = data;
             $scope.subCategoriesOrder = '-RowNum';
 
