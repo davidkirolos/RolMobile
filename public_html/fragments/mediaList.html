@@ -1,0 +1,60 @@
+<section class="mediapage" dir="rtl">
+    <div dir="rtl" style="text-align: center">
+        
+        <a href="#/menu">الرجوع</a>
+    </div>
+    <div class="search" dir="rtl">
+        <!--<h1>الميديا</h1>-->
+        <label>search: </label>
+        <input ng-model="query" type="search" placeholder="ابحث عن" autofocus>
+        <label class="formgroup" >ترتيب السلسة حسب : 
+            <select ng-model="subCategoriesOrder">
+                <option value="-RowNum" >التاريخ</option>
+                <option value="Description">العنوان</option>
+            </select>
+        </label>
+        <label class="formgroup">
+            تصاعدي
+            <input type="radio" ng-model="direction" name="direction" value="reverse" />
+        </label>
+        <label class="formgroup">
+            تنازلي
+            <input type="radio" ng-model="direction" name="direction" checked />
+        </label>
+            
+    </div>
+
+    <div class="searchresults" >
+        <div class="accordion">
+            <dl ng-accordion>
+                <div ng-accordion-group ng-repeat="subCategory in subCategories| filter: query | orderBy: subCategoriesOrder:!direction">
+                    <dt ng-accordion-heading ng-click="toggleOpen()">
+                        <a class="accordion-title accordionTitle">{{subCategory.Description}}</a>
+                    </dt>
+                    <dd dir="rtl" class="accordion-content accordionItem is-collapsed" ng-accordion-body>
+                        <input ng-model="query1" style="font-family: 'Droid Sans', sans-serif;
+                               padding: 6px 12px;
+                               color: #333;
+                               background: rgba(255,255,255,0.8);
+                               border: 1px solid rgba(255,255,255,0.2);
+                               border-radius: 10px;
+                               outline: 0;
+                               
+                               text-align: right;" type="search" placeholder="ابحث عن" autofocus/>
+                        <button class="btn" ng-click="loadPlayList(subCategory)">Play All List</button>
+                        <ul class="medialist">
+                            <li class="media cf" ng-repeat="media in subCategory.Medias| filter: query | filter: query1">
+                                <div ng-click="loadMedia(media)">
+                                    <div class="info">
+                                        <h2 style="padding-bottom: 5px;">{{media.Title}}</h2>
+                                        <h3>{{media.MediaDate}}</h3>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</section>

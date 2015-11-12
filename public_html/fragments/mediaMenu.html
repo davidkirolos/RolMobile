@@ -1,0 +1,31 @@
+<section class="mediapage">
+    <div class="searchresults" >
+        <div class="accordion">
+            <dl ng-accordion>
+                <div ng-accordion-group ng-repeat="menu in Menus">
+                    <dt ng-accordion-heading>
+                        <a ng-hide="menu.SubMenus == null" class="accordion-title accordionTitle">{{menu.Title}}</a>
+                        <a href="#/list" ng-click="setMainCategoryId(menu.SubCategoryId);" ng-show="menu.SubMenus == null" class="accordion-title accordionTitle">{{menu.Title}}</a>
+                    </dt>
+                    <dd dir="rtl" class="accordion-content accordionItem is-collapsed" ng-accordion-body>
+                        <ul class="medialist">
+                            <li class="media cf" ng-repeat="subMenu in menu.SubMenus">
+                                <div>
+                                    <div class="info">
+                                        <a href="#/list" ng-click="setMainCategoryId(subMenu.SubCategoryId);">
+                                            <span class="fa fa-chevron-right" style="float: right"/>
+                                            <h2 style="padding-bottom: 13px;">{{subMenu.Title}}</h2>
+                                            <span class="fa fa-video-camera" style="float: left; position: relative; top: -20px; bottom: 20px;"/>
+                                            <span class="fa fa-volume-down" style="float: left; position: relative; top: -20px; bottom: 20px;"/>
+                                        </a>
+                                        <!--<h3>{{media.MediaDate}}</h3>-->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</section>
